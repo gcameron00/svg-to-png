@@ -1,15 +1,54 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Home</title>
+    <title>SVG to PNG</title>
     <link rel="stylesheet" href="/assets/css/styles.css">
-    <script defer src="/assets/js/main.js"></script>
   </head>
   <body>
-    <h1>It works 🎉</h1>
-    <p>This site is deployed using Cloudflare Pages.</p>
-    <p><a href="/about/">About</a></p>
+    <header>
+      <h1>SVG to PNG</h1>
+      <p>Convert an SVG file to PNG — entirely in your browser. Nothing is uploaded anywhere.</p>
+    </header>
+
+    <main>
+      <div id="drop-zone" role="button" tabindex="0" aria-label="Drop SVG file here or click to browse">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="17 8 12 3 7 8"/>
+          <line x1="12" y1="3" x2="12" y2="15"/>
+        </svg>
+        <p>Drop an SVG file here</p>
+        <p class="sub">or <label for="file-input" class="file-label">browse to upload</label></p>
+        <input type="file" id="file-input" accept=".svg,image/svg+xml" aria-label="Choose SVG file" />
+      </div>
+
+      <div id="error-msg" role="alert" aria-live="polite" hidden></div>
+
+      <section id="preview-section" hidden>
+        <div id="preview-wrap">
+          <img id="preview-img" alt="SVG preview" />
+        </div>
+        <div id="controls">
+          <div class="field">
+            <label for="scale-input">Scale</label>
+            <div class="scale-row">
+              <input type="range" id="scale-slider" min="0.5" max="4" step="0.5" value="1" />
+              <input type="number" id="scale-input" min="0.5" max="10" step="0.5" value="1" aria-label="Scale factor" />
+              <span>×</span>
+            </div>
+          </div>
+          <p id="dimensions"></p>
+          <button id="download-btn" type="button">Download PNG</button>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <a href="/about/">About</a>
+    </footer>
+
+    <script src="/assets/js/main.js"></script>
   </body>
 </html>
